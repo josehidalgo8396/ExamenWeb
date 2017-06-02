@@ -1,0 +1,67 @@
+create table Client 
+(
+    idNumber integer not null primary key,
+    name text not null,
+    lastname text not null,
+    birth text not null,
+    direction text not null,
+    status text not null,
+    gender integer not null,
+    register text not null,
+    discount float not null
+);
+
+create table Product 
+(
+    id serial not null primary key,
+    name text not null,
+    brand text not null,
+    fammily text not null,
+    house text not null,
+    type text not null,
+    department text not null,
+    active integer not null,
+    register text not null,
+    unit integer not null,
+    tax float not null
+);
+
+create table Stock 
+(
+    id serial not null primary key,
+    idProduct integer not null references Product(id),
+    amount integer not null,
+    minAmount integer not null,
+    maxAmount integer not null,
+    graven text not null
+);
+    
+create table StockMovement
+(
+    id serial not null primary key,
+    idProduct integer not null references Product(id),
+    amount integer not null,
+    updated text not null
+);
+    
+create table StockMovementDetail
+(
+    id serial not null primary key,
+    idProduct integer not null references Product(id),
+    lastAmount integer  not null,
+    newAmount integer not null
+);
+
+create table TableUser
+(
+    id serial not null primary key,
+    username text not null,
+    password text not null,
+    rol integer not null
+);
+  
+    
+    
+    
+    
+    
