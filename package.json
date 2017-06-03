@@ -1,0 +1,19 @@
+{
+  "name": "examenweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josehidalgo8396/ExamenWeb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josehidalgo8396/ExamenWeb/issues"
+  },
+  "homepage": "https://github.com/josehidalgo8396/ExamenWeb#readme"
+}
