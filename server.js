@@ -2,7 +2,8 @@ var express       = require('express'),
     app           = express(),
     server        = require('http').createServer(app),
     bodyParser    = require('body-parser'),
-    sessionController     = require('./controllers/sessionController.js');
+    sessionController     = require('./controllers/sessionController.js'),
+    userController  =require('./controllers/userController.js');
 
 
 app.use(bodyParser.urlencoded({
@@ -19,6 +20,11 @@ app.get('/', function(req, res) {
 
 app.post('/login', sessionController.login);
 
+app.get('/users', userController.getAllUsers);
+app.get('/users/:id', userController.getUserById);
+app.post('/users', userController.addUser);
+app.put('/users/:id', userController.updateUser);
+app.put('/users/disable/:id',userController.disableUser);
 
 server.listen(process.env.PORT || 5000, function(){
     console.log('Listening at port 5000...');

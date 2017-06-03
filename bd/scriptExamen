@@ -8,7 +8,8 @@ create table Client
     status text not null,
     gender integer not null,
     register text not null,
-    discount float not null
+    discount float not null,
+    active integer not null  
 );
 
 create table Product 
@@ -54,14 +55,15 @@ create table StockMovementDetail
 
 create table TableUser
 (
-    id serial not null primary key,
+    id serial not null primary key, 
     username text not null,
     password text not null,
-    rol integer not null
+    rol integer not null,
+    active integer not null
 );
   
  
-INSERT INTO TableUser (username,password,rol) VALUES('jose','123',1);
+INSERT INTO TableUser (username,password,rol,active) VALUES('jose','123',1,1);
     
     
     

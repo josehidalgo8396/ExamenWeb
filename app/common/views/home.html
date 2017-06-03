@@ -7,26 +7,34 @@
 		            <ul ng-if="user.rol == 1" class="nav navbar-nav">
 						<li uib-dropdown>
 		                    <a uib-dropdown-toggle>
-		                        Administración
+		                        Clientes
 		                        <b class='caret'></b>
 		                    </a>
-		                    <tree tree='administracion'></tree>
+		                    <tree tree='clientes'></tree>
 		                </li>
 
 		                <li uib-dropdown>
 		                    <a uib-dropdown-toggle>
-		                        Cupones
+		                        Productos
 		                        <b class='caret'></b>
 		                    </a>
-		                    <tree tree='cupones'></tree>
+		                    <tree tree='productos'></tree>
 		                </li>
 
 		                <li uib-dropdown>
 		                    <a uib-dropdown-toggle>
-		                        Promociones
+		                        Inventario
 		                        <b class='caret'></b>
 		                    </a>
-		                    <tree tree='promociones'></tree>
+		                    <tree tree='inventario'></tree>
+		                </li>
+
+						<li uib-dropdown>
+		                    <a uib-dropdown-toggle>
+		                        Usuarios
+		                        <b class='caret'></b>
+		                    </a>
+		                    <tree tree='usuarios'></tree>
 		                </li>
 
 		            </ul>
@@ -42,11 +50,9 @@
 		            </ul>
 		        </div>
 	        </div>
-	        <!-- /.navbar-collapse -->
 	    </nav>
 	</div>
 	<!-- END NAVIGATION -->
-
 	<div class="ui-base">
 		<div ui-view />
 	</div>

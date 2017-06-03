@@ -23,19 +23,18 @@
       };
 
       $scope.editUser = function(userToEdit){
-        $scope.inputUser.usuario = userToEdit.username;
-        $scope.inputUser.nombre = userToEdit.name;
-        $scope.inputUser.tipo = userToEdit.rol.toString();
+        $scope.inputUser.username = userToEdit.username;
+        $scope.inputUser.password = userToEdit.password;
+        $scope.inputUser.rol = userToEdit.rol.toString();
       };
 
       $scope.updateUser = function (userToUpdate) {
-        userToUpdate.usuarioActual = $scope.user.usuario;
         usuarioService.editUser(userToUpdate).then(function(result) {
           if (result.success){
             for(var i=0; i<$scope.usersList.length; i++) {
-              if($scope.usersList[i].username == userToUpdate.usuario) {
-                $scope.usersList[i].name = userToUpdate.nombre;
-                $scope.usersList[i].rol = userToUpdate.tipo;
+              if($scope.usersList[i].username == userToUpdate.username) {
+                $scope.usersList[i].password = userToUpdate.password;
+                $scope.usersList[i].rol = userToUpdate.rol;
                 break;
               }
             }
@@ -49,7 +48,6 @@
       };
       
       $scope.addUser = function (newUser) {
-        newUser.contrasena = newUser.usuario;
         usuarioService.addUser(newUser).then(function(result) {
           if (result.success == true){
             $scope.getUsers();

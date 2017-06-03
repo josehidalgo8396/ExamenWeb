@@ -39,7 +39,7 @@ exports.allUsers = function(callback){
 
 
 exports.addUser = function(data, callback){
-    var paramsString = "'" +data.usuario+"'"+","+"'" + data.nombre +"'" +"," +"'" + data.contrasena +"'"+","+data.tipo+",1";
+    var paramsString = "'" +data.username+"'"+"," +"'" + data.password +"'"+","+data.rol+",1";
     repository.executeQuery({
         spName: 'sp_addUser',
         params: paramsString
@@ -76,7 +76,7 @@ exports.addUser = function(data, callback){
 };
 
 exports.updateUser = function(data, callback){
-    var paramsString = "'" +data.usuario+"'"+","+"'" + data.nombre +"'" +","+data.tipo;
+    var paramsString = "'" +data.username+"'"+","+"'" + data.password +"'" +","+data.rol;
     repository.executeQuery({
         spName: 'sp_updateUser',
         params: paramsString

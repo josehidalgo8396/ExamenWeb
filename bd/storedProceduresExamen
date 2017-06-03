@@ -7,3 +7,40 @@ CREATE OR REPLACE FUNCTION  sp_login(usernameP text, passwordP text) RETURNS INT
         end if;
    END;
 $$ LANGUAGE 'plpgsql'
+
+
+CREATE FUNCTION  sp_addUser(usernameP text, passwordP text, rolP integer, activeP integer) RETURNS INTEGER AS $$
+   BEGIN
+   		if exists(SELECT * FROM TableUser where username = usernameP) then
+            return 0;
+      	else
+            insert into TableUser(username, password, rol, active) values(usernameP, passwordP, rolP, activeP);
+        	return 1;
+        end if;
+   END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE FUNCTION  sp_updateUser(usernameP text, passwordP text, rolP integer) RETURNS INTEGER AS $$  
+   BEGIN
+   		if exists(SELECT * FROM TableUser where username = usernameP) then
+            update  TableUser set rol = rolP, password = passwordP where username = usernameP;
+            return 1;
+      	else
+        	return 0;
+        end if;
+   END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE FUNCTION  sp_disableUser(usernameP text) RETURNS VOID AS $$ 
+   BEGIN
+   		update  TableUser set active = 0 where username = usernameP;
+   END;
+$$ LANGUAGE 'plpgsql';
+ 
+
+CREATE OR REPLACE FUNCTION  sp_getUsers()
+RETURNS SETOF TableUser AS $$
+   BEGIN
+		RETURN QUERY SELECT * FROM TableUser where active = 1;
+   END; $$
+LANGUAGE 'plpgsql';

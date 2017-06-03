@@ -34,5 +34,17 @@
           parent: 'base',
           templateUrl: 'common/views/home.html'
         })
+        .state('gestionar-usuarios', {
+          url: '/gestionar-usuarios',
+          parent: 'home',
+          templateUrl: 'usuarios/views/gestionar-usuarios.html',
+          controller: 'GestionUsuariosCtrl'
+        })
+        .state('nuevo-cliente', {
+          url: '/nuevo-cliente',
+          parent: 'home',
+          templateUrl: 'clientes/views/nuevo-cliente.html',
+          controller: 'NuevoClienteCtrl'
+        })
     });
 })();

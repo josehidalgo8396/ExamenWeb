@@ -10,42 +10,21 @@
                 {
                     name: "Cerrar Sesión",
                     link: "logout"
-                },
-                {
-                    name: "Cambiar Contraseña",
-                    link: "cambiar-contrasena"
                 }
             ];
 
-            /*$scope.menu = [
+            $scope.clientes = [
                 {
-                    name: "Home",
-                    link: "home"
+                    name: "Gestion de Clientes",
+                    link: "gestionar-clientes"
                 },
                 {
-                    name: "Promociones",
-                    link: "gestionar-promociones"
-                },
-                {
-                    name: "Cupones",
-                    link: "gestionar-cupones"
-                },
-                {
-                    name: "Contacto",
-                    link: "contacto"
-                }
-            ];*/
-
-            
-
-            $scope.administracion = [
-                {
-                    name: "Gestion de Usuarios",
-                    link: "gestionar-usuarios"
+                    name: "Nuevo Cliente",
+                    link: "nuevo-cliente"
                 }
             ];
 
-            $scope.cupones = [
+            $scope.productos = [
                 {
                     name: "Agregar Cupón",
                     link: "nuevo-cupon"
@@ -56,7 +35,7 @@
                 }
             ];
 
-            $scope.promociones = [
+            $scope.inventario = [
                 {
                     name: "Agregar Promoción",
                     link: "nueva-promocion"
@@ -64,6 +43,13 @@
                 {
                     name: "Gestionar Promociones",
                     link: "gestionar-promociones"
+                }
+            ];
+
+            $scope.usuarios = [
+                {
+                    name: "Gestionar Usuarios",
+                    link: "gestionar-usuarios"
                 }
             ];
 
