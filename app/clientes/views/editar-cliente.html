@@ -12,10 +12,10 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><input class="form-control" type="number" ng-model="cliente.idNumber" placeholder="Ingrese la cédula"></td>
-						<td><input class="form-control" type="text" ng-model="cliente.name" placeholder="Ingrese el nombre"></td>
-                        <td><input class="form-control" type="text" ng-model="cliente.lastName" placeholder="Ingrese los apellidos"></td>
-                        <td><input class="form-control" type="text" ng-model="cliente.direction" placeholder="Ingrese la dirección"></td>
+						<td><input class="form-control" type="number" ng-model="cliente.idnumber" placeholder="Ingrese la cédula" required/></td>
+						<td><input class="form-control" type="text" ng-model="cliente.name" placeholder="Ingrese el nombre" required/></td>
+                        <td><input class="form-control" type="text" ng-model="cliente.lastname" placeholder="Ingrese los apellidos" required/></td>
+                        <td><input class="form-control" type="text" ng-model="cliente.direction" placeholder="Ingrese la dirección" required/></td>
                     </tr>
 				</tbody>
 			</table>
@@ -35,7 +35,7 @@
                             <p class="input-group">
                                 <input type="text" class="form-control" uib-datepicker-popup="{{dateSettings.dateFormat}}" 
                                         ng-model="cliente.birth" is-open="dateSettings.showRegDate"  
-                                        date-disabled="false" close-text="Cerrar" current-text="Hoy" ng-readonly="true"/>
+                                        date-disabled="false" close-text="Cerrar" current-text="Hoy" ng-readonly="true" required/>
                                 <span class="input-group-btn"> 
                                     <button type="button" class="btn btn-default" ng-click="openDatePickerPopUp()">
                                         <i class="glyphicon glyphicon-calendar"></i>
@@ -58,12 +58,12 @@
                                 <option value="0">Femenino</option>
                             </select>   
                         </td> 
-                        <td><input class="form-control" type="number" ng-model="cliente.discount" placeholder="Ingrese el descuento"></td>                   
+                        <td><input class="form-control" type="number" ng-model="cliente.discount" placeholder="Ingrese el descuento" required/></td>                   
                     </tr>
 				</tbody>
 			</table>
             <br><br>
-            <button class="btn btn-primary btn-lg center-block" ng-click="agregarCliente(cliente)">Agregar Cliente</button> 
+            <button class="btn btn-primary btn-lg center-block" ng-click="editarCliente(cliente)">Editar Cliente</button> 
 		</div>
 	</div>
 </div>

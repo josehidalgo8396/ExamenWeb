@@ -44,3 +44,45 @@ RETURNS SETOF TableUser AS $$
 		RETURN QUERY SELECT * FROM TableUser where active = 1;
    END; $$
 LANGUAGE 'plpgsql';
+
+
+
+
+
+CREATE OR REPLACE FUNCTION sp_addClient(idNumberP integer, nameP text, lastnameP text, birthP text, directionP text, statusP text, genderP integer, discountP float) RETURNS integer AS $$
+	BEGIN
+    	if exists(SELECT * FROM Client where idNumber = idNumberP) then  
+        	return 0;
+        else
+        	insert into Client(idNumber, name, lastName, birth, direction, status, gender, register, discount, active) 
+            values(idNumberP, nameP, lastNameP, birthP, directionP, statusP, genderP, current_date, discountP, 1);
+            return 1;
+       end if;
+    END;
+$$ LANGUAGE 'plpgsql'; 
+
+CREATE OR REPLACE FUNCTION  sp_getClients()
+RETURNS SETOF Client AS $$
+   BEGIN
+		RETURN QUERY SELECT * FROM Client where active = 1;
+   END; $$
+LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION sp_disableClient(idP integer) RETURNS VOID AS $$  
+	BEGIN
+    	update Client set active = 0 where idNumber = idP;
+    END;
+$$ LANGUAGE 'plpgsql'; 
+
+CREATE OR REPLACE FUNCTION  sp_getClient(idP integer)
+RETURNS SETOF Client AS $$
+   BEGIN
+		RETURN QUERY SELECT * FROM Client where idNumber = idP;
+   END; $$
+LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION sp_updateClient(idNumberP integer, nameP text, lastnameP text, birthP text, directionP text, statusP text, genderP integer, discountP float) RETURNS VOID AS $$  
+	BEGIN
+    	update Client set name=nameP, lastname=lastnameP, birth=birthP, direction=directionP, status=statusP, gender=genderP, discount=discountP where idNumber = idNumberP;
+    END;
+$$ LANGUAGE 'plpgsql'; 

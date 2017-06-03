@@ -2,11 +2,10 @@
   'use strict';
   angular
     .module('ExamenWeb')
-    .controller('NuevoClienteCtrl', ["$scope", "ClienteService", "messageHandlerService" , "shareSessionService",
-     function ($scope, clienteService, messageHandlerService, shareSessionService) {
+    .controller('EditarClienteCtrl', ["$scope", "ClienteService", "messageHandlerService", "shareSessionService", "ShareClientService",
+     function ($scope, clienteService, messageHandlerService, shareSessionService, shareClientService) {
         $scope.cliente = {};
         $scope.user = {};
-        $scope.cliente.birth = new Date();
         $scope.dateSettings = {
             dateFormat:'dd-MM-yyyy',
             showRegDate: false
@@ -17,14 +16,28 @@
             return $scope.dateSettings.showRegDate;
         };
 
-        $scope.agregarCliente = function() {
+        $scope.editarCliente = function() {
             $scope.cliente.gender = parseInt($scope.cliente.gender);
-            clienteService.newClient($scope.cliente).then(function(result) {
+            clienteService.editClient($scope.cliente).then(function(result) {
                 if(result.success) {
+                    $scope.cliente.gender = $scope.cliente.gender.toString();
 					messageHandlerService.notifySuccess(null, result.message);
                 }
                 else{
 					messageHandlerService.notifyError(null, result.message);
+                }
+            });
+        };
+
+        $scope.getClient = function() {
+            var id = shareClientService.getClientId();
+            clienteService.getClient(id).then(function(result) {
+                if(result.success) {
+                    $scope.cliente = result.data;
+                    $scope.cliente.gender = $scope.cliente.gender.toString();
+                }
+                else{
+                    messageHandlerService.notifyError(null, result.message);
                 }
             });
         };
@@ -36,5 +49,6 @@
         };
 
         $scope.getUser();
+        $scope.getClient();
   }]);
 })();

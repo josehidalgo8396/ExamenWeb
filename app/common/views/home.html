@@ -4,7 +4,7 @@
 	    <nav class="navbar navbar-default navbar-custom" role="navigation">
 	    	<div class="container-fluid">
 		        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
-		            <ul ng-if="user.rol == 1" class="nav navbar-nav">
+		            <ul class="nav navbar-nav">
 						<li uib-dropdown>
 		                    <a uib-dropdown-toggle>
 		                        Clientes
@@ -29,7 +29,7 @@
 		                    <tree tree='inventario'></tree>
 		                </li>
 
-						<li uib-dropdown>
+						<li ng-if="user.rol == 1" uib-dropdown>
 		                    <a uib-dropdown-toggle>
 		                        Usuarios
 		                        <b class='caret'></b>

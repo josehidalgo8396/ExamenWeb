@@ -46,5 +46,17 @@
           templateUrl: 'clientes/views/nuevo-cliente.html',
           controller: 'NuevoClienteCtrl'
         })
+        .state('gestionar-clientes', {
+          url: '/gestionar-clientes',
+          parent: 'home',
+          templateUrl: 'clientes/views/gestionar-clientes.html',
+          controller: 'GestionClienteCtrl'
+        })
+        .state('editar-cliente', {
+          url: '/editar-cliente',
+          parent: 'home',
+          templateUrl: 'clientes/views/editar-cliente.html',
+          controller: 'EditarClienteCtrl'
+        })
     });
 })();

@@ -15,36 +15,27 @@
 
             $scope.clientes = [
                 {
-                    name: "Gestion de Clientes",
-                    link: "gestionar-clientes"
-                },
-                {
                     name: "Nuevo Cliente",
                     link: "nuevo-cliente"
+                },
+                {
+                    name: "Gestion de Clientes",
+                    link: "gestionar-clientes"
                 }
             ];
 
             $scope.productos = [
                 {
-                    name: "Agregar Cupón",
-                    link: "nuevo-cupon"
+                    name: "Nuevo Producto",
+                    link: "nuevo-producto"
                 },
                 {
-                    name: "Gestionar Cupones",
-                    link: "gestionar-cupones"
+                    name: "Gestionar Productos",
+                    link: "gestionar-productos"
                 }
             ];
 
-            $scope.inventario = [
-                {
-                    name: "Agregar Promoción",
-                    link: "nueva-promocion"
-                },
-                {
-                    name: "Gestionar Promociones",
-                    link: "gestionar-promociones"
-                }
-            ];
+            $scope.inventario = [];
 
             $scope.usuarios = [
                 {
@@ -65,7 +56,6 @@
             };
 
             $scope.getUser();
-         
         }]);    
 })();
 
