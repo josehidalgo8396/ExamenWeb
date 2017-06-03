@@ -1,0 +1,9 @@
+CREATE OR REPLACE FUNCTION  sp_login(usernameP text, passwordP text) RETURNS INTEGER AS $$
+   BEGIN
+		if exists(SELECT * FROM TableUser where username = usernameP and password = passwordP) then
+            return (select rol from TableUser where username = usernameP);
+      	else
+        	return -1;
+        end if;
+   END;
+$$ LANGUAGE 'plpgsql'

@@ -60,7 +60,8 @@ create table TableUser
     rol integer not null
 );
   
-    
+ 
+INSERT INTO TableUser (username,password,rol) VALUES('jose','123',1);
     
     
     

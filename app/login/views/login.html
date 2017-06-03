@@ -1,0 +1,25 @@
+<div>
+    <div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4" align="center">
+            <div class="panel-body top" align="justify">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </span>
+                    <input class="form-control" type="text" placeholder="Correo" required ng-model="userData.username"></input>
+                </div> 
+                <br><br>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                    </span>
+                    <input class="form-control" type="password" placeholder="Contraseña" required ng-model="userData.password"></input>
+                </div> 
+                <br><br>
+                <button class="btn btn-primary btn-lg btn-block" type="button"  ng-click="login(userData)">Iniciar Sesión</button>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div> 
