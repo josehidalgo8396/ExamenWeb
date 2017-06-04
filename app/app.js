@@ -58,5 +58,23 @@
           templateUrl: 'clientes/views/editar-cliente.html',
           controller: 'EditarClienteCtrl'
         })
+        .state('nuevo-producto', {
+          url: '/nuevo-producto',
+          parent: 'home',
+          templateUrl: 'productos/views/nuevo-producto.html',
+          controller: 'NuevoProductoCtrl'
+        })
+        .state('gestionar-productos', {
+          url: '/gestionar-productos',
+          parent: 'home',
+          templateUrl: 'productos/views/gestionar-productos.html',
+          controller: 'GestionProductosCtrl'
+        })
+        .state('editar-producto', {
+          url: '/editar-producto',
+          parent: 'home',
+          templateUrl: 'productos/views/editar-producto.html',
+          controller: 'EditarProductoCtrl'
+        })
     });
 })();

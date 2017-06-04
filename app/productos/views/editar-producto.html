@@ -1,0 +1,47 @@
+<div>
+	<form name="productForm">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Marca</th>
+						<th>Familia</th>
+                        <th>Casa de Fabricación</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input class="form-control" type="text" ng-model="inputProduct.name" placeholder="Ingrese el nombre" required></td>
+						<td><input class="form-control" type="text" ng-model="inputProduct.brand" placeholder="Ingrese la marca" required></td>
+                        <td><input class="form-control" type="text" ng-model="inputProduct.family" placeholder="Ingrese la familia" required ></td>
+                        <td><input class="form-control" type="text" ng-model="inputProduct.house" placeholder="Ingrese la casa de fabricación" required></td>
+                    </tr>
+				</tbody>
+			</table>
+            <br>
+            <table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Tipo de Unidad</th>
+						<th>Departamento</th>
+						<th>Unidad</th>
+                        <th>Impuesto</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input class="form-control" type="text" ng-model="inputProduct.type" placeholder="Ingrese el tipo" required></td>
+						<td><input class="form-control" type="text" ng-model="inputProduct.department" placeholder="Ingrese el departamento" required></td>
+                        <td><input class="form-control" type="text" ng-model="inputProduct.unit" placeholder="Ingrese la unidad" required></td>
+                        <td><input class="form-control" type="number" ng-model="inputProduct.tax" placeholder="Ingrese los impuestos" required></td>
+                    </tr>
+				</tbody>
+			</table>
+            <br><br>
+            	<button class="btn btn-primary center-block" type="submit"  ng-click="productForm.$valid && updateProduct(inputProduct)">Editar Producto</button>
+			</div>
+		</div>
+	</form>
+</div>

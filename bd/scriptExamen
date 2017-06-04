@@ -17,13 +17,13 @@ create table Product
     id serial not null primary key,
     name text not null,
     brand text not null,
-    fammily text not null,
+    family text not null,
     house text not null,
     type text not null,
     department text not null,
     active integer not null,
     register text not null,
-    unit integer not null,
+    unit text not null,
     tax float not null
 );
 
