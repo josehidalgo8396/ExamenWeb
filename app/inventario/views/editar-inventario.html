@@ -1,0 +1,45 @@
+<div>
+	<form name="stockForm">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Producto</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<select disabled class="form-control">
+                                    <option value="">{{inputStock.productName}}</option>  
+							</select>
+						</td>
+                    </tr>
+				</tbody>
+			</table>
+            <br>
+            <table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Cantidad</th>
+						<th>Cantidad Mínima</th>
+						<th>Cantidad Máxima</th>
+                        <th>Gravado</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input ng-readonly="true" class="form-control" type="number" ng-model="inputStock.amount" placeholder="Ingrese la cantidad" ></td>
+						<td><input class="form-control" type="number" ng-model="inputStock.minamount" placeholder="Ingrese la cantidad mínima" required></td>
+                        <td><input class="form-control" type="number" ng-model="inputStock.maxamount" placeholder="Ingrese la cantidad máxima" required></td>
+                        <td><input class="form-control" type="text" ng-model="inputStock.graven" placeholder="Ingrese el gravado" required></td>
+                    </tr>
+				</tbody>
+			</table>
+            <br><br>
+            	<button class="btn btn-primary center-block" type="submit"  ng-click="stockForm.$valid && updateStock(inputStock)">Editar Inventario</button>
+			</div>
+		</div>
+	</form>
+</div>

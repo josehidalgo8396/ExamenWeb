@@ -9,6 +9,9 @@ CREATE OR REPLACE FUNCTION  sp_login(usernameP text, passwordP text) RETURNS INT
 $$ LANGUAGE 'plpgsql'
 
 
+-- ////////////////////////////////////// USER ///////////////////////////////////////////////////////////
+
+
 CREATE FUNCTION  sp_addUser(usernameP text, passwordP text, rolP integer, activeP integer) RETURNS INTEGER AS $$
    BEGIN
    		if exists(SELECT * FROM TableUser where username = usernameP) then
@@ -46,6 +49,7 @@ RETURNS SETOF TableUser AS $$
 LANGUAGE 'plpgsql';
 
 
+-- ////////////////////////////////////// CLIENT ////////////////////////////////////////////////////////
 
 
 
@@ -86,6 +90,11 @@ CREATE OR REPLACE FUNCTION sp_updateClient(idNumberP integer, nameP text, lastna
     	update Client set name=nameP, lastname=lastnameP, birth=birthP, direction=directionP, status=statusP, gender=genderP, discount=discountP where idNumber = idNumberP;
     END;
 $$ LANGUAGE 'plpgsql'; 
+
+
+
+-- ////////////////////////////////////// PRODUCT ////////////////////////////////////////////////////////////////
+
 
 
 CREATE FUNCTION  sp_addProduct(nameP text, brandP text, familyP text, houseP text,typeP text, departmentP text,unitP text, taxP float) RETURNS INTEGER AS $$
@@ -130,3 +139,58 @@ RETURNS SETOF Product AS $$
 		RETURN QUERY SELECT * FROM Product where id = idp;
    END; $$
 LANGUAGE 'plpgsql';
+
+
+-- ////////////////////////////////////// STOCK ////////////////////////////////////////////////////////////
+
+CREATE FUNCTION  sp_addStock(idProductP integer, amountP integer, minAmountP integer, maxAmountP integer,gravenP text) RETURNS INTEGER AS $$
+   BEGIN
+   		if exists(SELECT * FROM Stock where idProduct = idProductP) then
+            return 0;
+      	else
+            insert into Stock(idProduct, amount, minAmount, maxAmount,graven,active) values(idProductP, amountP, minAmountP, maxAmountP,gravenP,1);
+        	return 1;
+        end if;
+   END;
+$$ LANGUAGE 'plpgsql';
+
+
+CREATE OR REPLACE FUNCTION  sp_getProductsNoStock()
+RETURNS SETOF Product AS $$
+   BEGIN
+		RETURN QUERY SELECT * FROM Product where active = 1 and id not in (SELECT idProduct FROM Stock) ;
+   END; $$
+LANGUAGE 'plpgsql';
+
+
+CREATE OR REPLACE FUNCTION  sp_getStocks()
+RETURNS SETOF Stock AS $$
+   BEGIN
+		RETURN QUERY SELECT * FROM Stock where active = 1;
+   END; $$
+LANGUAGE 'plpgsql';
+
+CREATE FUNCTION  sp_disableStock(idP integer) RETURNS VOID AS $$ 
+   BEGIN
+   		update  Stock set active = 0 where id = idP;
+   END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE FUNCTION  sp_updateStock(idP integer, amountP integer, minAmountP integer, maxAmountP integer,gravenP text) RETURNS INTEGER AS $$  
+   BEGIN
+   		if exists(SELECT * FROM Stock where id = idP) then
+            update  Stock set amount = amountP, minAmount = minAmountP, maxAmount = maxAmountP, graven = gravenP where id = idP;
+            return 1;
+      	else
+        	return 0;
+        end if;
+   END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION  sp_getStock(idp integer)
+RETURNS SETOF Stock AS $$
+   BEGIN
+		RETURN QUERY SELECT * FROM Stock where id = idp;
+   END; $$
+LANGUAGE 'plpgsql';
+

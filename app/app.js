@@ -76,5 +76,23 @@
           templateUrl: 'productos/views/editar-producto.html',
           controller: 'EditarProductoCtrl'
         })
+        .state('nuevo-inventario', {
+          url: '/nuevo-inventario',
+          parent: 'home',
+          templateUrl: 'inventario/views/nuevo-inventario.html',
+          controller: 'NuevoInventarioCtrl'
+        })
+        .state('gestionar-inventario', {
+          url: '/gestionar-inventario',
+          parent: 'home',
+          templateUrl: 'inventario/views/gestionar-inventario.html',
+          controller: 'GestionInventarioCtrl'
+        })
+        .state('editar-inventario', {
+          url: '/editar-inventario',
+          parent: 'home',
+          templateUrl: 'inventario/views/editar-inventario.html',
+          controller: 'EditarInventarioCtrl'
+        })
     });
 })();

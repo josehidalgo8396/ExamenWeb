@@ -38,7 +38,7 @@ exports.allProducts = function(callback){
 
 
 exports.addProduct = function(data, callback){
-    console.log(data);
+
     var paramsString =  "'"+data.name+"',"+
                         "'"+data.brand+"',"+
                         "'"+data.family+"',"+

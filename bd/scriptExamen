@@ -34,7 +34,8 @@ create table Stock
     amount integer not null,
     minAmount integer not null,
     maxAmount integer not null,
-    graven text not null
+    graven text not null,
+    active integer not null
 );
     
 create table StockMovement

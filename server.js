@@ -6,6 +6,7 @@ var express       = require('express'),
     userController  = require('./controllers/userController.js'),
     clientController = require('./controllers/clientController.js'),
     productController = require('./controllers/productController.js');
+    stockController = require('./controllers/stockController.js')
 
 app.use(bodyParser.urlencoded({
 	extended: true
@@ -38,6 +39,14 @@ app.get('/products/:id',productController.getProduct);
 app.post('/products',productController.addProduct);
 app.put('/products/disable/:id',productController.disableProduct);
 app.put('/products/:id',productController.updateProduct);
+
+app.get('/stock',stockController.getAllStocks);
+app.get('/stock',stockController.getProductsNotStock);
+app.get('/stock/:id',stockController.getStock);
+app.post('/stock',stockController.addStock);
+app.put('/stock/disable/:id',stockController.disableStock);
+app.put('/stock/:id',stockController.updateStock);
+
 
 
 server.listen(process.env.PORT || 5000, function(){

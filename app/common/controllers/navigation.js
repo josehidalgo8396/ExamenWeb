@@ -35,7 +35,16 @@
                 }
             ];
 
-            $scope.inventario = [];
+            $scope.inventario = [
+                {
+                    name: "Nuevo Inventario",
+                    link: "nuevo-inventario"
+                },
+                {
+                    name: "Gestionar Inventarios",
+                    link: "gestionar-inventario"
+                }
+            ];
 
             $scope.usuarios = [
                 {
