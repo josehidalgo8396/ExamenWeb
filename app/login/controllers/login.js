@@ -11,7 +11,7 @@
 			};
 
 			var sendToHome = function() {
-				$state.go('home');
+				$state.go('gestionar-inventario');
 			};
 
 			var welcomeMessage = function(name) {
