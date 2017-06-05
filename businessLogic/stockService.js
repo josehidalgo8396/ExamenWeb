@@ -206,3 +206,27 @@ exports.getStock = function(data, callback){
     });
 };
 
+exports.stockMovement = function(data, callback){
+    var paramsString = data.idproduct + "," + data.amount + "," + data.newAmount;
+    repository.executeQuery({
+        spName: 'sp_stockMovement',
+        params: paramsString
+    }, 
+    function(success, data) {
+        if(success) {
+            callback({
+                success: true, 
+                message: "Movimiento de inventario exitoso",
+                data: null
+            });
+        } 
+        else{
+            callback(
+            {
+                success: false,
+                data: null,
+                message: "No se pudo obtener la información del inventario"
+            });
+        }
+    });
+};

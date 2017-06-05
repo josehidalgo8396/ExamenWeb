@@ -149,6 +149,7 @@ CREATE FUNCTION  sp_addStock(idProductP integer, amountP integer, minAmountP int
             return 0;
       	else
             insert into Stock(idProduct, amount, minAmount, maxAmount,graven,active) values(idProductP, amountP, minAmountP, maxAmountP,gravenP,1);
+            insert into StockMovement(idProduct, amount, updated) values(idProductP, amountP, current_date); 
         	return 1;
         end if;
    END;
@@ -158,7 +159,7 @@ $$ LANGUAGE 'plpgsql';
 CREATE OR REPLACE FUNCTION  sp_getProductsNoStock()
 RETURNS SETOF Product AS $$
    BEGIN
-		RETURN QUERY SELECT * FROM Product where active = 1 and id not in (SELECT idProduct FROM Stock) ;
+		RETURN QUERY SELECT * FROM Product where active = 1 and id not in (SELECT idProduct FROM Stock); 
    END; $$
 LANGUAGE 'plpgsql';
 
@@ -194,3 +195,10 @@ RETURNS SETOF Stock AS $$
    END; $$
 LANGUAGE 'plpgsql';
 
+CREATE FUNCTION  sp_stockMovement(idP integer, amountP integer, newAmountP integer) RETURNS VOID AS $$ 
+   BEGIN
+        update StockMovement set amount = newAmountP, updated = current_date where id = idP;
+        update Stock set amount = amount + newAmountP where idProduct = idP;
+        insert into StockMovementDetail(idProduct, lastAmount, newAmount) values(idP, amountP, newAmountP); 
+   END;
+$$ LANGUAGE 'plpgsql';

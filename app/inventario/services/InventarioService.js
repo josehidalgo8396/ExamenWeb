@@ -54,7 +54,7 @@
             };
 
             var getProdNotStock = function() {
-                var link = "/stock";
+                var link = "/stock/products";
 				return requestService.getRequest({params: ""}, {url: link}).then(function(result){
 	  				return result;
 	  			},
@@ -63,6 +63,15 @@
 	  			});
             };
 
+			var doMovement = function(pData) {
+				var link = "/stock/movement";
+				return requestService.postRequest({params: "", data: pData}, {url: link}).then(function(result){
+	  				return result;
+	  			},
+	  			function(result){
+	  				return result;
+	  			});
+			};
             
 
 			return {
@@ -83,7 +92,10 @@
 				},
                 getProductsNotStock: function(){
                     return getProdNotStock();
-                }
+                },
+				stockMovement: function(pData) {
+					return doMovement(pData);
+				}
 			};
 		}]);
 })();

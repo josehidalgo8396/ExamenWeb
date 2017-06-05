@@ -1,4 +1,8 @@
 <div>
+	<ol class="breadcrumb">
+        <li class="active">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inventario</li>
+        <li class="active">Nuevo</li>
+    </ol> 
 	<form name="stockForm">
 	<div class="panel panel-default">
 		<div class="panel-body">
@@ -11,7 +15,7 @@
 				<tbody>
 					<tr>
 						<td>
-							<select class="form-control" ng-model="inputStock.idProduct" placeholder="Elige un producto" required>
+							<select class="form-control" ng-model="inputStock.idproduct" placeholder="Elige un producto" required>
 									<option value="" disabled selected>Producto</option>
 									<option ng-repeat="product in productList" value="{{product.id}}">{{product.name}}</option>
 							</select>

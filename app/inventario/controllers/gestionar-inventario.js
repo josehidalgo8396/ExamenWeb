@@ -2,8 +2,8 @@
   'use strict';
   angular
     .module('ExamenWeb')
-    .controller('GestionInventarioCtrl', ["$scope","$state","InventarioService","ProductoService","messageHandlerService" , "shareSessionService","shareStockService","$uibModal","confirmationModalService",
-     function ($scope,$state, inventarioService,productoService, messageHandlerService, shareSessionService,shareStockService,$uibModal,confirmationModalService) {
+    .controller('GestionInventarioCtrl', ["$scope","$state","InventarioService","ProductoService","messageHandlerService" , "shareSessionService","shareStockService","$uibModal","confirmationModalService","StockMovementService",
+     function ($scope,$state, inventarioService,productoService, messageHandlerService, shareSessionService,shareStockService,$uibModal,confirmationModalService, stockMovementService) {
       $scope.productList = [];
       $scope.stockList = [];
       $scope.inputStock = {};
@@ -14,12 +14,10 @@
         inventarioService.getStocks().then(function(result) {
           if (result.success){
             $scope.stockList = result.data;
-            //console.log($scope.productList);
             $scope.getProducts();
             
           }
           else{
-            //$scope.productList = {};
             messageHandlerService.notifyWarning(null, result.message);
           }
         }); 
@@ -46,17 +44,15 @@
           if (result.success){
             $scope.productList = result.data;
             $scope.findProductName();
-            //console.log($scope.productList);
           }
           else{
-            //$scope.productList = {};
             messageHandlerService.notifyWarning(null, result.message);
           }
         }); 
       };
 
        $scope.disableStock = function(pId) {
-        $scope.openConfirmationModal(function(response){
+        $scope.openConfirmationModal(1,function(response){
           if (!response.success){
             return;
           }
@@ -74,6 +70,21 @@
         });
       };
 
+      $scope.setMovementStock = function(stock) {
+          stockMovementService.setStock(stock);
+          $scope.openConfirmationModal(0, function(response) {
+              if(!response.success) {
+                return;
+              }
+              for(var i=0; i<$scope.stockList.length; i++) {
+                if(stock.id == $scope.stockList[i].id) {
+                  $scope.stockList[i].amount += stock.newAmount;
+                  break;
+                }
+              }
+          });
+      };
+
       $scope.getUser = function() {
         var session = shareSessionService.getSession();
         $scope.user.usuario = session.usuario;
@@ -85,15 +96,27 @@
         confirmationModalService.setModalContent(mTitle, mMessage);
       };
 
-      $scope.openConfirmationModal = function (callback) {
-        setModalContent('Deshabilitar Inventario', '¿Está seguro(a) de que desea deshabilitar el inventario?');
-        var modalInstance = $uibModal.open({
-          animation: true,
-          templateUrl: 'confirmationModalTemplate.html',
-          controller: 'ModalInstanceCtrl',
-          size: 'sm',
-          resolve: {}
-        });
+      $scope.openConfirmationModal = function (type, callback) {
+        var modalInstance;
+        if(type == 1) {
+            setModalContent('Deshabilitar Inventario', '¿Está seguro(a) de que desea deshabilitar el inventario?');
+            modalInstance = $uibModal.open({
+              animation: true,
+              templateUrl: 'confirmationModalTemplate.html',
+              controller: 'ModalInstanceCtrl',
+              size: 'sm',
+              resolve: {}
+            });
+        }
+        else {
+            modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'stockMovementTemplate.html',
+                controller: 'StockMovementCtrl',
+                size: 'md',
+                resolve: {}
+              });
+        }
 
         modalInstance.result.then(
           function (confirmationResponse) {

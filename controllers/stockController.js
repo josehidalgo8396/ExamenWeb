@@ -38,3 +38,9 @@ exports.disableStock= function(dRequest, dResponse) {
         dResponse.send(data);
     });
 };
+
+exports.stockMovement= function(dRequest, dResponse) {
+    var data = stockService.stockMovement(dRequest.body, function(data) {
+        dResponse.send(data);
+    });
+};

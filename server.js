@@ -41,9 +41,10 @@ app.put('/products/disable/:id',productController.disableProduct);
 app.put('/products/:id',productController.updateProduct);
 
 app.get('/stock',stockController.getAllStocks);
-app.get('/stock',stockController.getProductsNotStock);
+app.get('/stock/products',stockController.getProductsNotStock);
 app.get('/stock/:id',stockController.getStock);
 app.post('/stock',stockController.addStock);
+app.post('/stock/movement', stockController.stockMovement);
 app.put('/stock/disable/:id',stockController.disableStock);
 app.put('/stock/:id',stockController.updateStock);
 

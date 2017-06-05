@@ -2,8 +2,35 @@
     <ol class="breadcrumb">
         <li class="active">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inventario</li>
         <li class="active">Buscar Inventario</li>
-    </ol> 
-    <div class="container">
+    </ol>
+    <script type="text/ng-template" id="stockMovementTemplate.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Movimiento de Inventario</h3>
+        </div>
+        <div>
+            <table class="table" style="float: left;">
+                <tbody>
+                    <tr>
+                        <td><label>Producto</label></td>
+                        <td><label>{{stock.productName}}</label></td>
+                    </tr>
+                    <tr>
+                        <td><label>Cantidad</label></td>
+                        <td><label>{{stock.amount}}</label></td>
+                    </tr>
+                    <tr>
+                        <td><label>Nueva Cantidad</label></td>
+                        <td><input type="number" ng-model="stock.newAmount"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-sm" ng-click="ok()" ><i class="glyphicon glyphicon-ok"></i>Realizar Movimiento</button> 
+            <button class="btn btn-warning btn-sm" ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+        </div>
+    </script> 
+    <div>
         <div class="input-group">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-search"></span>
@@ -16,7 +43,7 @@
         <br></br>  
     </div>           
     <div>
-        <div class="container">
+        <div>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <script type="text/ng-template" id="confirmationModalTemplate.html">
@@ -34,14 +61,18 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Inventario</th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
                                 <th>&nbsp;</th> 
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="stock in filters=(stockList | filter:mdlTag)">
                                 <td>{{stock.productName}}</td>
+                                <td>{{stock.amount}}</td>
                                 <td style="white-space: nowrap">
+                                    <button ng-if="user.rol == 1" class="btn btn-primary btn-xs"  uib-tooltip="movimiento de inventario" ng-click="setMovementStock(stock)"><img src="../../images/stock.png">
+                                    </button>
                                     <button ng-if="user.rol == 1" class="btn btn-warning btn-xs"  uib-tooltip="editar" ng-click="sendToUpdateStockView(stock.id)"><span class="glyphicon glyphicon-pencil">
                                     </button>
                                     <button ng-if="user.rol == 1" class="btn btn-danger btn-xs"  uib-tooltip="desactivar" ng-click="disableStock(stock.id)"><span class="glyphicon glyphicon-trash">

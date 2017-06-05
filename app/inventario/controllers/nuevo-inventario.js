@@ -13,7 +13,6 @@
       $scope.addStock = function (newStock) {
         inventarioService.addStock(newStock).then(function(result) {
           if (result.success == true){
-            //$scope.getUsers();
             messageHandlerService.notifySuccess(null, result.message)
             $scope.removeProduct();
             $scope.inputStock = {};
@@ -36,7 +35,7 @@
               break;
           }
         }
-      }
+      };
 
       $scope.getUser = function() {
         var session = shareSessionService.getSession();
@@ -52,36 +51,12 @@
         inventarioService.getProductsNotStock().then(function(result) {
           if (result.success){
             $scope.productList = result.data;
-            //console.log($scope.productList);
           }
           else{
-            //$scope.productList = {};
             messageHandlerService.notifyWarning(null, result.message);
           }
         }); 
       };
-/*
-      $scope.openConfirmationModal = function (callback) {
-        setModalContent('Deshabilitar usuario', '¿Está seguro(a) de que desea deshabilitar el usuario?');
-        var modalInstance = $uibModal.open({
-          animation: true,
-          templateUrl: 'confirmationModalTemplate.html',
-          controller: 'ModalInstanceCtrl',
-          size: 'sm',
-          resolve: {}
-        });
-
-        modalInstance.result.then(
-          function (confirmationResponse) {
-            callback({
-              success: confirmationResponse
-            });
-        }, function () {
-          callback({
-              success: false
-            });
-        });
-      };*/
 
       $scope.getUser();
       $scope.getProductsNotStock();
