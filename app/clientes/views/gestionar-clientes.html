@@ -35,7 +35,6 @@
                         <tr>
                             <th>Cédula</th>
                             <th>Nombre</th>
-                            <th>Apellidos</th>
                             <th>Fecha Nacimiento</th>
                             <th>Dirección</th>
                             <th>Estado Civil</th>
@@ -47,14 +46,13 @@
                     <tbody>
                         <tr ng-repeat="client in filters=(clientList | filter:mdlTag)">
                             <td>{{client.idnumber}}</td>
-                            <td>{{client.name}}</td>
-                            <td>{{client.lastname}}</td>
-                            <th>{{client.birth | date : format : timezone}}</th>
+                            <td>{{client.name}} {{client.lastname}}</td>
+                            <td>{{client.birth | date:'dd-MM-yyyy'}}</td>
                             <td>{{client.direction}}</td>
                             <td>{{client.status}}</td>
-                            <th ng-if="client.gender == 1">Masculino</th>
-                            <th ng-if="client.gender == 0">Femenino</th>
-                            <th>{{client.discount}}%</th>
+                            <td ng-if="client.gender == 1">Masculino</td>
+                            <td ng-if="client.gender == 0">Femenino</td>
+                            <td>{{client.discount}}%</td>
                             <td style="white-space: nowrap">
                                 <button ng-if="user.rol==1" class="btn btn-warning btn-xs"  uib-tooltip="editar" ng-click="sendToUpdateClientView(client.idnumber)"><span class="glyphicon glyphicon-pencil">
                                 </button>

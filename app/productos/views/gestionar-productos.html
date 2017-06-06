@@ -35,12 +35,24 @@
                         <thead>
                             <tr>
                                 <th>Producto</th>
+                                <th>Marca</th>
+                                <th>Departamento</th>
+                                <th>Familia</th>
+                                <th>Tipo</th>
+                                <th>Unidad</th>
+                                <th>Impuesto</th>
                                 <th>&nbsp;</th> 
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="product in filters=(productList | filter:mdlTag)">
                                 <td>{{product.name}}</td>
+                                <td>{{product.brand}}</td>
+                                <td>{{product.department}}</td>
+                                <td>{{product.family}}</td>
+                                <td>{{product.type}}</td>
+                                <td>{{product.unit}}</td>
+                                <td>{{product.tax}}%</td>
                                 <td style="white-space: nowrap">
                                     <button ng-if="user.rol == 1" class="btn btn-warning btn-xs"  uib-tooltip="editar" ng-click="sendToUpdateProductView(product.id)"><span class="glyphicon glyphicon-pencil">
                                     </button>

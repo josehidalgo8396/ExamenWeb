@@ -13,10 +13,9 @@
         productoService.getProducts().then(function(result) {
           if (result.success){
             $scope.productList = result.data;
-            //console.log($scope.productList);
+            console.log($scope.productList);
           }
           else{
-            //$scope.productList = {};
             messageHandlerService.notifyWarning(null, result.message);
           }
         }); 

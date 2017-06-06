@@ -16,7 +16,6 @@
             messageHandlerService.notifySuccess(null, result.message)
             $scope.removeProduct();
             $scope.inputStock = {};
-
           }
           else{
             if (!result.message) {

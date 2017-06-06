@@ -38,14 +38,12 @@ exports.allStocks = function(callback){
 
 
 exports.addStock = function(data, callback){
-
-    var paramsString =      data.idProduct+','+
+    var paramsString =      data.idproduct+','+
                             data.amount+','+
                             data.minAmount+','+
                             data.maxAmount+','+
-                        "'"+data.graven+"'";
-                       
-
+                        "'"+data.graven+"'";       
+    
     repository.executeQuery({
         spName:  'sp_addStock',
         params: paramsString

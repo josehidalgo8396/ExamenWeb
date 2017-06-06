@@ -63,6 +63,9 @@
                             <tr>
                                 <th>Producto</th>
                                 <th>Cantidad</th>
+                                <th>Cantidad Máxima</th>
+                                <th>Cantidad Mínima</th>
+                                <th>Gravado</th>
                                 <th>&nbsp;</th> 
                             </tr>
                         </thead>
@@ -70,6 +73,9 @@
                             <tr ng-repeat="stock in filters=(stockList | filter:mdlTag)">
                                 <td>{{stock.productName}}</td>
                                 <td>{{stock.amount}}</td>
+                                <td>{{stock.maxamount}}</td>
+                                <td>{{stock.minamount}}</td>
+                                <td>{{stock.graven}}</td>
                                 <td style="white-space: nowrap">
                                     <button ng-if="user.rol == 1" class="btn btn-primary btn-xs"  uib-tooltip="movimiento de inventario" ng-click="setMovementStock(stock)"><img src="../../images/stock.png">
                                     </button>
